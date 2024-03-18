@@ -1,0 +1,165 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-4ed993c7.js",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-24696a36.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.js": {
+    "assets": [
+      "assets/facebook-3b7b240d.png",
+      "assets/github-logo-d83ddf4e.png",
+      "assets/twitter-45e4e798.png",
+      "assets/LandPage_bg-70f6ba39.jpg",
+      "assets/admin-3777d90b.png",
+      "assets/bar-chart-33fb22f1.png",
+      "assets/blockchain-ac4fb7d8.png",
+      "assets/certificate-a3b03e7b.png",
+      "assets/chauffeur-e175ac7b.png",
+      "assets/farmer-82e31fc8.png",
+      "assets/inspection-49578f4b.png",
+      "assets/invoice-1dd3b8a2.png",
+      "assets/manufacturing-d73fe1a5.png",
+      "assets/marketplace-2b54b51d.png",
+      "assets/route-ad04baf1.png",
+      "assets/tax-31584b31.png",
+      "assets/HarvestLink_Logo-f6462b15.png",
+      "assets/user-3a7b862c.png",
+      "assets/more-55935ed4.png",
+      "assets/setting-98d3b5a1.png",
+      "assets/logout-25ea8cab.png",
+      "assets/profile-4af7ca13.png",
+      "assets/add-a0eb447a.png",
+      "assets/create-8ffba145.png",
+      "assets/eye-826654ed.png",
+      "assets/delete-dcb19b32.png",
+      "assets/path-a-to-b-af87e015.png",
+      "assets/image-42fe867a.png"
+    ],
+    "css": [
+      "assets/app-24696a36.css"
+    ],
+    "file": "assets/app-0ba51a80.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/js/components/assets/icons/add.png": {
+    "file": "assets/add-a0eb447a.png",
+    "src": "resources/js/components/assets/icons/add.png"
+  },
+  "resources/js/components/assets/icons/admin.png": {
+    "file": "assets/admin-3777d90b.png",
+    "src": "resources/js/components/assets/icons/admin.png"
+  },
+  "resources/js/components/assets/icons/bar-chart.png": {
+    "file": "assets/bar-chart-33fb22f1.png",
+    "src": "resources/js/components/assets/icons/bar-chart.png"
+  },
+  "resources/js/components/assets/icons/blockchain.png": {
+    "file": "assets/blockchain-ac4fb7d8.png",
+    "src": "resources/js/components/assets/icons/blockchain.png"
+  },
+  "resources/js/components/assets/icons/certificate.png": {
+    "file": "assets/certificate-a3b03e7b.png",
+    "src": "resources/js/components/assets/icons/certificate.png"
+  },
+  "resources/js/components/assets/icons/chauffeur.png": {
+    "file": "assets/chauffeur-e175ac7b.png",
+    "src": "resources/js/components/assets/icons/chauffeur.png"
+  },
+  "resources/js/components/assets/icons/create.png": {
+    "file": "assets/create-8ffba145.png",
+    "src": "resources/js/components/assets/icons/create.png"
+  },
+  "resources/js/components/assets/icons/delete.png": {
+    "file": "assets/delete-dcb19b32.png",
+    "src": "resources/js/components/assets/icons/delete.png"
+  },
+  "resources/js/components/assets/icons/eye.png": {
+    "file": "assets/eye-826654ed.png",
+    "src": "resources/js/components/assets/icons/eye.png"
+  },
+  "resources/js/components/assets/icons/facebook.png": {
+    "file": "assets/facebook-3b7b240d.png",
+    "src": "resources/js/components/assets/icons/facebook.png"
+  },
+  "resources/js/components/assets/icons/farmer.png": {
+    "file": "assets/farmer-82e31fc8.png",
+    "src": "resources/js/components/assets/icons/farmer.png"
+  },
+  "resources/js/components/assets/icons/github-logo.png": {
+    "file": "assets/github-logo-d83ddf4e.png",
+    "src": "resources/js/components/assets/icons/github-logo.png"
+  },
+  "resources/js/components/assets/icons/image.png": {
+    "file": "assets/image-42fe867a.png",
+    "src": "resources/js/components/assets/icons/image.png"
+  },
+  "resources/js/components/assets/icons/inspection.png": {
+    "file": "assets/inspection-49578f4b.png",
+    "src": "resources/js/components/assets/icons/inspection.png"
+  },
+  "resources/js/components/assets/icons/invoice.png": {
+    "file": "assets/invoice-1dd3b8a2.png",
+    "src": "resources/js/components/assets/icons/invoice.png"
+  },
+  "resources/js/components/assets/icons/logout.png": {
+    "file": "assets/logout-25ea8cab.png",
+    "src": "resources/js/components/assets/icons/logout.png"
+  },
+  "resources/js/components/assets/icons/manufacturing.png": {
+    "file": "assets/manufacturing-d73fe1a5.png",
+    "src": "resources/js/components/assets/icons/manufacturing.png"
+  },
+  "resources/js/components/assets/icons/marketplace.png": {
+    "file": "assets/marketplace-2b54b51d.png",
+    "src": "resources/js/components/assets/icons/marketplace.png"
+  },
+  "resources/js/components/assets/icons/more.png": {
+    "file": "assets/more-55935ed4.png",
+    "src": "resources/js/components/assets/icons/more.png"
+  },
+  "resources/js/components/assets/icons/path-a-to-b.png": {
+    "file": "assets/path-a-to-b-af87e015.png",
+    "src": "resources/js/components/assets/icons/path-a-to-b.png"
+  },
+  "resources/js/components/assets/icons/profile.png": {
+    "file": "assets/profile-4af7ca13.png",
+    "src": "resources/js/components/assets/icons/profile.png"
+  },
+  "resources/js/components/assets/icons/request.png": {
+    "file": "assets/request-8915fdeb.png",
+    "src": "resources/js/components/assets/icons/request.png"
+  },
+  "resources/js/components/assets/icons/route.png": {
+    "file": "assets/route-ad04baf1.png",
+    "src": "resources/js/components/assets/icons/route.png"
+  },
+  "resources/js/components/assets/icons/setting.png": {
+    "file": "assets/setting-98d3b5a1.png",
+    "src": "resources/js/components/assets/icons/setting.png"
+  },
+  "resources/js/components/assets/icons/tax.png": {
+    "file": "assets/tax-31584b31.png",
+    "src": "resources/js/components/assets/icons/tax.png"
+  },
+  "resources/js/components/assets/icons/twitter.png": {
+    "file": "assets/twitter-45e4e798.png",
+    "src": "resources/js/components/assets/icons/twitter.png"
+  },
+  "resources/js/components/assets/icons/user.png": {
+    "file": "assets/user-3a7b862c.png",
+    "src": "resources/js/components/assets/icons/user.png"
+  },
+  "resources/js/components/assets/images/HarvestLink_Logo.png": {
+    "file": "assets/HarvestLink_Logo-f6462b15.png",
+    "src": "resources/js/components/assets/images/HarvestLink_Logo.png"
+  },
+  "resources/js/components/assets/images/LandPage_bg.jpg": {
+    "file": "assets/LandPage_bg-70f6ba39.jpg",
+    "src": "resources/js/components/assets/images/LandPage_bg.jpg"
+  }
+}
