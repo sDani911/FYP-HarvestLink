@@ -1,14 +1,16 @@
 import React, { useState, useContext } from "react";
 import {AuthContext} from "./AuthContext";
 import axios from '../../axiosConfig'; // Path to your axiosConfig file
-import Cookies from 'js-cookie';
 import {Link, useNavigate} from "react-router-dom";
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function Login() {
     const navigate = useNavigate();
     const { toggleUserLogin } = useContext(AuthContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -22,13 +24,17 @@ function Login() {
                 // Assuming your server sends user data and a token in the response
                 const { data, token, type } = response.data.data;
                 toggleUserLogin(data, token, type)
-
+                toast.success('Login successful');
                 goToAnotherRoute();
             } else {
+                toast.error('Login failed');
                 console.error('login failed:', response.data);
             }
         } catch (error) {
+            toast.error('Error occurred during login');
             console.error('Error occurred during login:', error);
+        } finally {
+            setLoading(false);
         }
     };
     const goToAnotherRoute = () => {
@@ -91,9 +97,9 @@ function Login() {
                             <button
                                 type="submit"
                                 className="w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-
+                                disabled={loading}
                             >
-                                Sign in
+                                {loading ? 'Loading...' : 'Sign in'}
                             </button>
                         </div>
                     </form>

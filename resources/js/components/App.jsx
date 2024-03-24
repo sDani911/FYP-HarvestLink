@@ -48,6 +48,8 @@ import Stats from './components/Statistics/Statistics';
 import UserBlockChain from './components/BlockChain/BlockChain';
 import Appointment from './components/Admin/Appointements';
 import './assets/styles/index.css'
+import {ToastContainer} from "react-toastify";
+
 function MyApp() {
     const { userLogin } = useContext(AuthContext);
 
@@ -119,6 +121,7 @@ function MyApp() {
 }
 ReactDOM.createRoot(document.getElementById('app')).render(
     <AuthProvider>
+        <ToastContainer />
         <MyApp />
     </AuthProvider>
 );
