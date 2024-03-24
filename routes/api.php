@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CropAuthenticationController;
 use App\Http\Controllers\CropController;
+use App\Http\Controllers\DriverController;
 use App\Http\Controllers\FarmRecordController;
 use App\Http\Controllers\ManufactureController;
 use App\Http\Controllers\OrderController;
@@ -48,7 +49,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     //ShippingCompany
     Route::post('createShippingCompany',[ShippingCompanyController::class,'store']);
+    Route::post('createShippingCompanyDriver',[ShippingCompanyController::class,'createShippingCompanyDriver']);
     Route::get('ShippingCompany',[ShippingCompanyController::class,'index']);
+    Route::get('ShippingCompanyRoutes',[ShippingCompanyController::class,'ShippingCompanyRoutes']);
+    Route::get('ShippingCompanyRouteData/{id}',[ShippingCompanyController::class,'ShippingCompanyRouteData']);
+    Route::get('ShippingCompanyDriverList',[ShippingCompanyController::class,'ShippingCompanyDriverList']);
+    Route::get('ShippingCompanyDriverData',[ShippingCompanyController::class,'ShippingCompanyDriverData']);
+    Route::get('GetShippingCompanyDriverData/{id}',[ShippingCompanyController::class,'GetShippingCompanyDriverData']);
+    Route::post('UpdateShippingCompanyDriver/{id}',[ShippingCompanyController::class,'UpdateShippingCompanyDriver']);
+    Route::post('AssignDriverToRoute/{id}',[ShippingCompanyController::class,'AssignDriverToRoute']);
 
     //Marketplace
     Route::post('placeCropOnMarketPlace/{id}',[CropController::class,'update']);
@@ -57,5 +66,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     //Order
     Route::post('buyCropOnMarketplace',[OrderController::class,'buyCropOnMarketplace']);
 
+    //Driver
+    Route::get('DriverJobs',[DriverController::class,'DriverJobs']);
+    Route::post('DriverUpdateRouteStatus/{id}',[ShippingCompanyController::class,'DriverUpdateRouteStatus']);
 
 });

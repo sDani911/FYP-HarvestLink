@@ -1,22 +1,10 @@
-import React, { useState } from "react";
-import { Progress2 } from "../Comp/Progress";
+import React, { useState, useEffect } from "react";
+import { Progress3 } from "../Comp/Progress";
 import axios from "../../axiosConfig";
+import {useParams} from "react-router";
 
-//////////////////////////////BACKEND ONLY//////////////////////////////
-
-const nextForm = () => {};
-const prevForm = () => {};
-
-//////////////////////////////FRONTEND ONLY//////////////////////////////
-
-export default function ShippingCompanyCreate() {
-    const [shippingCompanyInfo, setShippingCompanyInfo] = useState({
-        name: "",
-        contactPerson: "",
-        contactNo: "",
-        email: "",
-        licenseNumber: "",
-    });
+export default function UpdateDriver() {
+    const { id } = useParams();
 
     const [userInfo, setUserInfo] = useState({
         firstName: "",
@@ -42,11 +30,8 @@ export default function ShippingCompanyCreate() {
         licenseNumber: "",
         insurance: "",
         condition: "",
+        availabilityStatus: "",
     });
-
-    const updateShippingCompanyInfo = (data) => {
-        setShippingCompanyInfo((prevData) => ({ ...prevData, ...data }));
-    };
 
     const updateUserInfo = (data) => {
         setUserInfo((prevData) => ({ ...prevData, ...data }));
@@ -55,15 +40,55 @@ export default function ShippingCompanyCreate() {
     const updateVehicleInfo = (data) => {
         setVehicleInfo((prevData) => ({ ...prevData, ...data }));
     };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`/GetShippingCompanyDriverData/${id}`);
+                const { data } = await response.data;
+                setUserInfo({
+                    firstName: data.user.first_name,
+                    lastName: data.user.last_name,
+                    gender: data.user.gender,
+                    dateOfBirth: data.user.dob,
+                    cnic: data.user.cnic,
+                    cnicExpiry: data.user.cnic_expiry,
+                    qualification: data.user.qualification,
+                    profilePicture: data.user.profile_picture,
+                    email: data.user.email,
+                    password: "", // Assuming you don't want to include the password in state
+                    phoneNumber: data.user.phone_number,
+                    street: data.user.address.street,
+                    city: data.user.address.city,
+                    state: data.user.address.state,
+                    country: data.user.address.country,
+                });
+
+                // Update vehicleInfo state
+                setVehicleInfo({
+                    type: data.vehicle.type,
+                    registration: data.vehicle.registration,
+                    licenseNumber: data.vehicle.license_number,
+                    insurance: data.vehicle.insurance,
+                    condition: data.vehicle.condition,
+                    availabilityStatus: data.vehicle.availability_status,
+                });
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchData();
+    }, [id]);
+
     const submitForm = async () => {
         try {
             const formData = {
-                shippingCompanyInfo,
                 userInfo,
                 vehicleInfo,
             };
 
-            const response = await axios.post('/createShippingCompany', formData);
+            const response = await axios.post(`/UpdateShippingCompanyDriver/${id}`, formData);
 
             if (response.ok) {
                 const responseData = await response.json();
@@ -88,90 +113,11 @@ export default function ShippingCompanyCreate() {
 
     return (
         <div className="m-16 min-h-full">
-            {currentStep === 1 && <ShippingCompanyInformation nextForm={nextForm} shippingCompanyInfo={shippingCompanyInfo}  updateShippingCompanyInfo={updateShippingCompanyInfo}/>}
-            {currentStep === 2 && (
+            {currentStep === 1 && (
                 <UserInformation nextForm={nextForm} prevForm={prevForm} userInfo={userInfo}  updateUserInfo={updateUserInfo}/>
             )}
-            {currentStep === 3 && <Vehicle  prevForm={prevForm} submitForm={submitForm} vehicleInfo={vehicleInfo}  updateVehicleInfo={updateVehicleInfo}/>}
+            {currentStep === 2 && <Vehicle  prevForm={prevForm} submitForm={submitForm} vehicleInfo={vehicleInfo}  updateVehicleInfo={updateVehicleInfo}/>}
 
-        </div>
-    );
-}
-
-// Separate function for ShippingCompany Information section
-function ShippingCompanyInformation({ nextForm, shippingCompanyInfo, updateShippingCompanyInfo }) {
-    return (
-        <div className="my-12 mx-10 bg-blue-800 rounded-3xl shadow-2xl p-4">
-            <div className="flex items-end justify-between h-[60px]">
-                <h2 className="text-3xl font-bold  px-6 py-3  rounded-md">
-                    ShippingCompany
-                </h2>
-                <button
-                    className="bg-blue-600 text-white text-xl px-4 py-2 rounded-lg"
-                    onClick={nextForm}
-                >
-                    Next
-                </button>
-            </div>
-            <hr className="my-4 h-1 bg-white" />
-            <Progress2 level={1} />
-            <form method="post" className="grid grid-cols-1 gap-4 mt-4">
-                <div className="p-4 flex flex-col space-y-4">
-                    <h2 className="mx-4 mt-4 text-3xl font-bold text-black">
-                        Shipping Company Information:
-                    </h2>
-                    <label className="text-white">Shipping Company Name</label>
-                    <input
-                        className="w-full h-10 px-4 rounded-xl border-2 border-white"
-                        type="text"
-                        name="name"
-                        placeholder="Shipping Company Name"
-                        value={shippingCompanyInfo.name}
-                        onChange={(e) => updateShippingCompanyInfo({ name: e.target.value })}
-                    />
-
-                    <label className="text-white">Contact Person Name</label>
-                    <input
-                        className="w-full h-10 px-4 rounded-xl border-2 border-white"
-                        type="text"
-                        name="contactPerson"
-                        placeholder="Contact Person Name"
-                        value={shippingCompanyInfo.contactPerson}
-                        onChange={(e) => updateShippingCompanyInfo({ contactPerson: e.target.value })}
-                    />
-
-                    <label className="text-white">Contact No</label>
-                    <input
-                        className="w-full h-10 px-4 rounded-xl border-2 border-white"
-                        type="text"
-                        name="contactNo"
-                        placeholder="Contact No"
-                        value={shippingCompanyInfo.contactNo}
-                        onChange={(e) => updateShippingCompanyInfo({ contactNo: e.target.value })}
-                    />
-
-                    <label className="text-white">Email</label>
-                    <input
-                        className="w-full h-10 px-4 rounded-xl border-2 border-white"
-                        type="text"
-                        name="email"
-                        placeholder="Email"
-                        value={shippingCompanyInfo.email}
-                        onChange={(e) => updateShippingCompanyInfo({ email: e.target.value })}
-                    />
-
-                    <label className="text-white">Company License Number</label>
-                    <input
-                        className="w-full h-10 px-4 rounded-xl border-2 border-white"
-                        type="text"
-                        name="licenseNumber"
-                        placeholder="License Number"
-                        value={shippingCompanyInfo.licenseNumber}
-                        onChange={(e) => updateShippingCompanyInfo({ licenseNumber: e.target.value })}
-                    />
-
-                </div>
-            </form>
         </div>
     );
 }
@@ -197,12 +143,7 @@ function UserInformation({ nextForm, prevForm, userInfo, updateUserInfo }) {
     return (
         <div className="my-12 mx-10 bg-blue-800 rounded-3xl shadow-2xl p-4">
             <div className="flex items-end justify-between h-[60px]">
-                <button
-                    className="bg-blue-600 text-white text-xl px-4 py-2 rounded-lg"
-                    onClick={prevForm}
-                >
-                    Back
-                </button>
+
                 <h2 className="text-3xl font-bold  px-6 py-3  rounded-md">
                     Driver Information
                 </h2>
@@ -214,7 +155,7 @@ function UserInformation({ nextForm, prevForm, userInfo, updateUserInfo }) {
                 </button>
             </div>
             <hr className="my-4 h-1 bg-white" />
-            <Progress2 level={2} />
+            <Progress3 level={1} />
             <form action="" className="grid grid-cols-1 gap-4 mt-4">
                 <div className="p-4 grid grid-cols-1 gap-4">
                     <h2 className="mx-4 mt-4 text-3xl font-bold text-black">
@@ -270,16 +211,16 @@ function UserInformation({ nextForm, prevForm, userInfo, updateUserInfo }) {
 
                     <label className="text-white">Gender</label>
                     <select
-                    className="w-full h-10 px-4 rounded-xl border-2 border-white"
-                    name="gender"
-                    value={userInfo.gender}
-                    onChange={(e) => updateUserInfo({ gender: e.target.value })}
-                >
-                    <option value="">Select Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="none">None</option>
-                </select>
+                        className="w-full h-10 px-4 rounded-xl border-2 border-white"
+                        name="gender"
+                        value={userInfo.gender}
+                        onChange={(e) => updateUserInfo({ gender: e.target.value })}
+                    >
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="none">None</option>
+                    </select>
 
 
                     <label className="text-white">Date of Birth</label>
@@ -389,7 +330,7 @@ function Vehicle({ submitForm, prevForm,vehicleInfo,updateVehicleInfo }) {
                     Back
                 </button>
                 <h2 className="text-3xl font-bold  px-6 py-3  rounded-md">
-                    ShippingCompany
+                    Vehicle Data
                 </h2>
 
                 <button
@@ -400,11 +341,11 @@ function Vehicle({ submitForm, prevForm,vehicleInfo,updateVehicleInfo }) {
                 </button>
             </div>
             <hr className="my-4 h-1 bg-white" />
-            <Progress2 level={3} />
+            <Progress3 level={2} />
             <form method="post" className="grid grid-cols-1 gap-4 mt-4">
                 <div className=" p-4 grid grid-cols-1 gap-4">
                     <h2 className="mx-4 mt-4 text-3xl font-bold text-black">
-                        Vehicle Info
+                        Vehicle
                     </h2>
                     <label className="text-white">Vehicle Type</label>
                     <select
@@ -454,6 +395,15 @@ function Vehicle({ submitForm, prevForm,vehicleInfo,updateVehicleInfo }) {
                         placeholder="Condition"
                         value={vehicleInfo.condition}
                         onChange={(e) => updateVehicleInfo({ condition: e.target.value })}
+                    />
+                    <label className="text-white">Availability Status</label>
+                    <input
+                        className="w-full h-10 px-4 rounded-xl border-2 border-white"
+                        type="text"
+                        name="availabilityStatus"
+                        placeholder="Availability Status"
+                        value={vehicleInfo.availabilityStatus}
+                        onChange={(e) => updateVehicleInfo({ availabilityStatus: e.target.value })}
                     />
                 </div>
             </form>

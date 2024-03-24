@@ -21,18 +21,18 @@ function Homepage() {
     const user = Type; //To be handled by backend developer; Tip fetch user type from backend
 
     const homepageItems = [
-        { text: 'Inspection', link: '/InspectionLanding', icon: inspectorIcon, access: ['Farmer', 'Manufacture', 'Driver', 'Admin','ShippingCompany'] },
-        { text: 'Invoice', link: '/Invoice', icon: invoiceIcon, access: ['Farmer', 'Manufacture', 'Driver', 'Admin','ShippingCompany'] },
-        { text: 'Driver', link: '/DriverLanding', icon: driverIcon, access: ['Driver', 'Admin',] },
-        { text: 'Routes', link: '/RouteLanding', icon: routeIcon, access: ['Farmer', 'Manufacture', 'Driver', 'Admin','ShippingCompany'] },
-        { text: 'Farmer', link: '/FarmerLanding', icon: farmerIcon, access: ['Farmer', 'Admin',] },
-        { text: 'Marketplace', link: '/MarketPlace', icon: marketplaceIcon, access: ['Farmer', 'Manufacture', 'Admin','ShippingCompany'] },
-        { text: 'Certificate', link: '/CertificateLanding', icon: certificateIcon, access: ['Farmer', 'Manufacture', 'Driver', 'Admin','ShippingCompany'] },
-        { text: 'Tax / Regulation', link: '/Tax', icon: taxIcon, access: ['Farmer', 'Manufacture', 'Driver', 'Admin','ShippingCompany'] },
         { text: 'Administeration', link: '/AdminLanding', icon: adminIcon, access: ['Admin',] },
-        { text: 'Blockchain Records', link: '/Blockchain', icon: blockchainIcon, access: ['Farmer', 'Manufacture', 'Driver', 'Admin','ShippingCompany'] },
+        { text: 'Driver', link: '/DriverLanding', icon: driverIcon, access: ['Driver', 'Admin',] },
+        { text: 'Farmer', link: '/FarmerLanding', icon: farmerIcon, access: ['Farmer', 'Admin',] },
         { text: 'Manufacture', link: '/ManufactureLanding', icon: manufacturingIcon, access: ['Manufacture', 'Admin',] },
         { text: 'ShippingCompany', link: '/ShippingCompanyLanding', icon: manufacturingIcon, access: ['ShippingCompany', 'Admin',] },
+        { text: 'Inspection', link: '/InspectionLanding', icon: inspectorIcon, access: ['Farmer', 'Manufacture', 'Driver', 'Admin'] },
+        { text: 'Routes', link: '/RouteLanding', icon: routeIcon, access: [ 'Admin','ShippingCompany'] },
+        { text: 'Marketplace', link: '/MarketPlace', icon: marketplaceIcon, access: ['Farmer', 'Manufacture', 'Admin','ShippingCompany'] },
+        { text: 'Invoice', link: '/Invoice', icon: invoiceIcon, access: ['Farmer', 'Manufacture', 'Driver', 'Admin','ShippingCompany'] },
+        { text: 'Blockchain Records', link: '/Blockchain', icon: blockchainIcon, access: ['Farmer', 'Manufacture', 'Driver', 'Admin','ShippingCompany'] },
+        { text: 'Certificate', link: '/CertificateLanding', icon: certificateIcon, access: ['Farmer', 'Manufacture', 'Driver', 'Admin','ShippingCompany'] },
+        { text: 'Tax / Regulation', link: '/Tax', icon: taxIcon, access: ['Farmer', 'Manufacture', 'Driver', 'Admin','ShippingCompany'] },
         { text: 'Statistics', link: '/Statistics', icon: barChartIcon, access: ['Farmer', 'Manufacture', 'Driver', 'Admin','ShippingCompany'] },
         // Add more items as needed
     ];

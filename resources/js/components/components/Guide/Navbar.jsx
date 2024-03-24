@@ -35,7 +35,8 @@ function Nav_Bar() {
     const navigate = useNavigate();
 
     const handleSignOut = () => {
-      toggleUserLogin()
+        setUserbarOpen(false);
+        toggleUserLogin()
       navigate('/')
     // Implement your sign-out logic here
   };

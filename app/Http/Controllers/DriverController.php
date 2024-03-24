@@ -1,4 +1,3 @@
-
 <?php
 
 namespace App\Http\Controllers;
@@ -6,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Driver\DriverCreateFormRequest;
 use App\Http\Requests\Driver\DriverUpdateFormRequest;
+use App\Models\Driver;
 use App\Services\Driver\DriverService;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -35,9 +35,32 @@ class DriverController extends Controller
             $groupBy = request()->groupBy ? request()->groupBy : null;
             $data = $this->DriverService->DriverList($view,$page,$search,$groupBy);
             if (isset($data['error'])){
-                return ApiResponse($data['error']['message'],$data['error']['status_code']);
+                return $this->ApiResponse($data['error']['message'],$data['error']['status_code']);
             }
-            return ApiResponse('success',200,$data);
+            return $this->ApiResponse('success',200,$data);
+        } catch (HttpException $e) {
+            return response()->json(['message' => $e->getMessage()], $e->getStatusCode());
+        } catch (Exception $e) {
+            if (config('app.debug')) {
+                return response()->json(['message' => $e->getMessage(), 'trace' => $e->getTrace()], 500);
+            }
+            return response()->json(['message' => __('response.catch')], 500);
+        }
+    }
+    public function DriverJobs(Request $request)
+    {
+        try {
+            $user = Auth::user();
+            $driver = Driver::where('user_id',$user->id)->first();
+            $view = $request->input('view') ?$request->input('view'): null;
+            $page = (int)request()->page ?? 1;
+            $search = request()->search ? request()->search : null;
+            $groupBy = request()->groupBy ? request()->groupBy : null;
+            $data = $this->DriverService->DriverJobs($view,$page,$search,$groupBy,$driver->id);
+            if (isset($data['error'])){
+                return $this->ApiResponse($data['error']['message'],$data['error']['status_code']);
+            }
+            return $this->ApiResponse('success',200,$data);
         } catch (HttpException $e) {
             return response()->json(['message' => $e->getMessage()], $e->getStatusCode());
         } catch (Exception $e) {
@@ -64,9 +87,9 @@ class DriverController extends Controller
         try {
             $data = $this->DriverService->store($request->all());
             if (isset($data['error'])){
-                return ApiResponse($data['error']['message'],$data['error']['status_code']);
+                return $this->ApiResponse($data['error']['message'],$data['error']['status_code']);
             }
-            return ApiResponse($data['message']['message'],$data['message']['status_code'],$data);
+            return $this->ApiResponse($data['message']['message'],$data['message']['status_code'],$data);
         } catch (HttpException $e) {
             return response()->json(['message' => $e->getMessage()], $e->getStatusCode());
         } catch (Exception $e) {
@@ -85,9 +108,9 @@ class DriverController extends Controller
         try {
             $data = $this->DriverService->show((int)$id);
             if (isset($data['error'])){
-                return ApiResponse($data['error']['message'],$data['error']['status_code']);
+                return $this->ApiResponse($data['error']['message'],$data['error']['status_code']);
             }
-            return ApiResponse("success",200,$data);
+            return $this->ApiResponse("success",200,$data);
         } catch (HttpException $e) {
             return response()->json(['message' => $e->getMessage()], $e->getStatusCode());
         } catch (Exception $e) {
@@ -106,9 +129,9 @@ class DriverController extends Controller
         try {
             $data = $this->DriverService->getEditData((int)$id);
             if (isset($data['error'])){
-                return ApiResponse($data['error']['message'],$data['error']['status_code']);
+                return $this->ApiResponse($data['error']['message'],$data['error']['status_code']);
             }
-            return ApiResponse("success",200,$data);
+            return $this->ApiResponse("success",200,$data);
         } catch (HttpException $e) {
             return response()->json(['message' => $e->getMessage()], $e->getStatusCode());
         } catch (Exception $e) {
@@ -126,9 +149,9 @@ class DriverController extends Controller
         try {
             $data = $this->DriverService->update($request->all(), (int)$id);
             if (isset($data['error'])){
-                return ApiResponse($data['error']['message'],$data['error']['status_code']);
+                return $this->ApiResponse($data['error']['message'],$data['error']['status_code']);
             }
-            return ApiResponse($data['message']['message'],$data['message']['status_code'],$data);
+            return $this->ApiResponse($data['message']['message'],$data['message']['status_code'],$data);
         } catch (HttpException $e) {
             return response()->json(['message' => $e->getMessage()], $e->getStatusCode());
         } catch (Exception $e) {
@@ -147,9 +170,9 @@ class DriverController extends Controller
         try {
             $data = $this->DriverService->destroy((int)$id);
             if (isset($data['error'])){
-                return ApiResponse($data['error']['message'],$data['error']['status_code']);
+                return $this->ApiResponse($data['error']['message'],$data['error']['status_code']);
             }
-            return ApiResponse($data['message']['message'],$data['message']['status_code'],$data);
+            return $this->ApiResponse($data['message']['message'],$data['message']['status_code'],$data);
         } catch (HttpException $e) {
             return response()->json(['message' => $e->getMessage()], $e->getStatusCode());
         } catch (Exception $e) {

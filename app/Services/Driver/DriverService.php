@@ -4,6 +4,7 @@ namespace App\Services\Driver;
 
 use App\Models\Driver;
 use App\Models\DebugLog;
+use App\Models\Order;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,6 +49,38 @@ class DriverService
             }
 
             return $driver;
+        } catch (QueryException $e) {
+            DebugLog::saveLog('driverList',$e->getMessage());
+            return ['error' => config('constants.query_error')($this->moduleName,$e->getMessage())];
+        } catch (\Exception $e) {
+            DebugLog::saveLog('driverList',$e->getMessage());
+            return ['error' => config('constants.internal_error')];
+        }
+    }
+    public function DriverJobs($view = null, $page = null,$search = null, $filter = null,$driverId)
+    {
+        try {
+            $jobs = Order::where('driver_id',$driverId);
+
+            if($search){
+                $jobs = $jobs->where('user_id', 'like', '%' .$search. '%' )
+                    ->orderByRaw('CASE
+               WHEN id LIKE "'.$search.'%" THEN 1
+               WHEN id LIKE "%'.$search.'%" THEN 2
+               ELSE 3
+               END');
+            }
+            if($filter){
+                $jobs = $jobs->where('type', $filter);
+            }
+
+            if($view){
+                $jobs = $jobs->paginate($view, ['*'], 'page', $page);
+            } else {
+                $jobs = $jobs->get();
+            }
+
+            return $jobs;
         } catch (QueryException $e) {
             DebugLog::saveLog('driverList',$e->getMessage());
             return ['error' => config('constants.query_error')($this->moduleName,$e->getMessage())];

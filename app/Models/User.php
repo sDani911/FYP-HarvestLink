@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class User extends Authenticatable
 {
@@ -37,7 +38,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Crop::class, 'crop_authentication', 'user_id', 'crop_id');
     }
-
+    public function shippingCompany()
+    {
+        return $this->belongsTo(ShippingCompany::class);
+    }
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

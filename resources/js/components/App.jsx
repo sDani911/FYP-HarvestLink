@@ -16,6 +16,7 @@ import FarmerCreate from './components/Farmer/FarmerCreate';
 import ManufactureCreate from './components/Manufacture/ManufactureCreate';
 import ShippingCompanyCreate from './components/ShippingCompany/ShippingCompanyCreate';
 import DriverCreate from './components/Driver/DriverCreate';
+import DriverViewRoute from './components/Driver/DriverViewRoute';
 import AdminCreate from './components/Admin/AdminCreate';
 import Invoice from './components/Invoice/Invoice';
 import InvoiceNew from './components/Invoice/InvoiceNew';
@@ -25,7 +26,8 @@ import InspectionRequest from './components/Inspection/InspectionRequest';
 import DriverLanding from './components/Driver/DriverLanding';
 import DriverView from './components/Driver/DriverView';
 import RouteLanding from './components/Route/RouteLanding';
-import RouteCreate from './components/Driver/DriverCreate';
+import CreateDriver from './components/Driver/DriverCreate';
+import RouteView from './components/Route/RouteView';
 import Manufacture_Landing from './components/Manufacture/ManufactureLanding';
 import ShippingCompany_Landing from './components/ShippingCompany/ShippingCompanyLanding';
 import CertificateLanding from './components/Certification/CertificationLanding';
@@ -37,6 +39,7 @@ import ViewRole from './components/Admin/ViewRole';
 import AddRole from './components/Admin/AddRole';
 // import AddFormComponent from './components/Admin/AddRole';
 import AddCropToMarketPlace from './components/Farmer/AddCropToMarketPlace';
+import UpdateDriver from './components/ShippingCompany/UpdateDriver';
 import MarketPlace from './components/MarketPlace/MarketPlace';
 import ProductPage from './components/MarketPlace/ProductPage';
 import OrderPage from './components/MarketPlace/OrderPage';
@@ -85,8 +88,10 @@ function MyApp() {
                         <Route exact path="/InspectionRequest" element={<InspectionRequest/>} />
                         <Route exact path="/DriverLanding" element={<DriverLanding/>} />
                         <Route exact path="/DriverView" element={<DriverView/>} />
+                        <Route exact path="/DriverViewRoute/:id" element={<DriverViewRoute/>} />
                         <Route exact path="/RouteLanding" element={<RouteLanding/>} />
-                        <Route exact path="/RouteCreate" element={<RouteCreate/>} />
+                        <Route exact path="/RouteView/:id" element={<RouteView/>} />
+                        <Route exact path="/CreateDriver" element={<CreateDriver/>} />
                         <Route exact path="/ManufactureLanding" element={<Manufacture_Landing/>} />
                         <Route exact path="/ShippingCompanyLanding" element={<ShippingCompany_Landing/>} />
                         <Route exact path="/CertificateLanding" element={<CertificateLanding/>} />
@@ -97,6 +102,7 @@ function MyApp() {
                         <Route exact path="/AddRole" element={<AddRole/>} />
                         <Route exact path="/Appointment" element={<Appointment/>} />
                         <Route exact path="/AddCropToMarketPlace/:id" element={<AddCropToMarketPlace/>} />
+                        <Route exact path="/UpdateDriver/:id" element={<UpdateDriver/>} />
                         <Route exact path="/MarketPlace" element={<MarketPlace/>} />
                         <Route exact path="/ProductPage" element={<ProductPage/>} />
                         <Route exact path="/OrderPage" element={<OrderPage/>} />

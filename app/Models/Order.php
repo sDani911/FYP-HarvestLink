@@ -29,7 +29,11 @@ class Order extends Model
         'pickup_location',
         'delivery_location',
         'cost',
+        'status',
     ];
-
+    public function driver()
+    {
+        return $this->belongsTo(Driver::class, 'driver_id');
+    }
 
 }

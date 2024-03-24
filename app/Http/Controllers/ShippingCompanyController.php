@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ShippingCompany\ShippingCompanyCreateFormRequest;
 use App\Http\Requests\ShippingCompany\ShippingCompanyUpdateFormRequest;
+use App\Models\ShippingCompany;
 use App\Services\ShippingCompany\ShippingCompanyService;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -33,6 +34,73 @@ class ShippingCompanyController extends Controller
             $search = request()->search ? request()->search : null;
             $groupBy = request()->groupBy ? request()->groupBy : null;
             $data = $this->ShippingCompanyService->ShippingCompanyList($view,$page,$search,$groupBy);
+            if (isset($data['error'])){
+                return $this->ApiResponse($data['error']['message'],$data['error']['status_code']);
+            }
+            return $this->ApiResponse('success',200,$data);
+        } catch (HttpException $e) {
+            return response()->json(['message' => $e->getMessage()], $e->getStatusCode());
+        } catch (Exception $e) {
+            if (config('app.debug')) {
+                return response()->json(['message' => $e->getMessage(), 'trace' => $e->getTrace()], 500);
+            }
+            return response()->json(['message' => __('response.catch')], 500);
+        }
+    }
+
+    public function ShippingCompanyRoutes(Request $request)
+    {
+        try {
+            $view = $request->input('view') ?$request->input('view'): null;
+            $page = (int)request()->page ?? 1;
+            $search = request()->search ? request()->search : null;
+            $groupBy = request()->groupBy ? request()->groupBy : null;
+            $user = Auth::user();
+            $shippingCompany = ShippingCompany::where('user_id',$user->id)->first();
+            $data = $this->ShippingCompanyService->ShippingCompanyRoutes($view,$page,$search,$groupBy,$shippingCompany->id);
+            if (isset($data['error'])){
+                return $this->ApiResponse($data['error']['message'],$data['error']['status_code']);
+            }
+            return $this->ApiResponse('success',200,$data);
+        } catch (HttpException $e) {
+            return response()->json(['message' => $e->getMessage()], $e->getStatusCode());
+        } catch (Exception $e) {
+            if (config('app.debug')) {
+                return response()->json(['message' => $e->getMessage(), 'trace' => $e->getTrace()], 500);
+            }
+            return response()->json(['message' => __('response.catch')], 500);
+        }
+    }
+
+    public function ShippingCompanyDriverData(Request $request)
+    {
+        try {
+            $view = $request->input('view') ?$request->input('view'): null;
+            $page = (int)request()->page ?? 1;
+            $search = request()->search ? request()->search : null;
+            $groupBy = request()->groupBy ? request()->groupBy : null;
+            $data = $this->ShippingCompanyService->ShippingCompanyDriverData($view,$page,$search,$groupBy);
+            if (isset($data['error'])){
+                return $this->ApiResponse($data['error']['message'],$data['error']['status_code']);
+            }
+            return $this->ApiResponse('success',200,$data);
+        } catch (HttpException $e) {
+            return response()->json(['message' => $e->getMessage()], $e->getStatusCode());
+        } catch (Exception $e) {
+            if (config('app.debug')) {
+                return response()->json(['message' => $e->getMessage(), 'trace' => $e->getTrace()], 500);
+            }
+            return response()->json(['message' => __('response.catch')], 500);
+        }
+    }
+    public function ShippingCompanyDriverList(Request $request)
+    {
+        try {
+            $view = $request->input('view') ?$request->input('view'): null;
+            $page = (int)request()->page ?? 1;
+            $search = request()->search ? request()->search : null;
+            $groupBy = request()->groupBy ? request()->groupBy : null;
+            $data = $this->ShippingCompanyService->ShippingCompanyDriverList($view,$page,$search,$groupBy);
             if (isset($data['error'])){
                 return $this->ApiResponse($data['error']['message'],$data['error']['status_code']);
             }
@@ -77,6 +145,26 @@ class ShippingCompanyController extends Controller
         }
     }
 
+    public function createShippingCompanyDriver(ShippingCompanyCreateFormRequest $request)
+    {
+        try {
+            $user = Auth::user();
+            $sc = ShippingCompany::where('user_id',$user->id)->first();
+            $data = $this->ShippingCompanyService->createShippingCompanyDriver($request->all(),$sc->id);
+            if (isset($data['error'])){
+                return $this->ApiResponse($data['error']['message'],$data['error']['status_code']);
+            }
+            return $this->ApiResponse($data['message']['message'],$data['message']['status_code'],$data);
+        } catch (HttpException $e) {
+            return response()->json(['message' => $e->getMessage()], $e->getStatusCode());
+        } catch (Exception $e) {
+            if (config('app.debug')) {
+                return response()->json(['message' => $e->getMessage(), 'trace' => $e->getTrace()], 500);
+            }
+            return response()->json(['message' => __('response.catch')], 500);
+        }
+    }
+
     /**
      * Display the specified resource.
      */
@@ -84,6 +172,40 @@ class ShippingCompanyController extends Controller
     {
         try {
             $data = $this->ShippingCompanyService->show((int)$id);
+            if (isset($data['error'])){
+                return $this->ApiResponse($data['error']['message'],$data['error']['status_code']);
+            }
+            return $this->ApiResponse("success",200,$data);
+        } catch (HttpException $e) {
+            return response()->json(['message' => $e->getMessage()], $e->getStatusCode());
+        } catch (Exception $e) {
+            if (config('app.debug')) {
+                return response()->json(['message' => $e->getMessage(), 'trace' => $e->getTrace()], 500);
+            }
+            return response()->json(['message' => __('response.catch')], 500);
+        }
+    }
+    public function GetShippingCompanyDriverData($id)
+    {
+        try {
+            $data = $this->ShippingCompanyService->GetShippingCompanyDriverData((int)$id);
+            if (isset($data['error'])){
+                return $this->ApiResponse($data['error']['message'],$data['error']['status_code']);
+            }
+            return $this->ApiResponse("success",200,$data);
+        } catch (HttpException $e) {
+            return response()->json(['message' => $e->getMessage()], $e->getStatusCode());
+        } catch (Exception $e) {
+            if (config('app.debug')) {
+                return response()->json(['message' => $e->getMessage(), 'trace' => $e->getTrace()], 500);
+            }
+            return response()->json(['message' => __('response.catch')], 500);
+        }
+    }
+    public function ShippingCompanyRouteData($id)
+    {
+        try {
+            $data = $this->ShippingCompanyService->ShippingCompanyRouteData((int)$id);
             if (isset($data['error'])){
                 return $this->ApiResponse($data['error']['message'],$data['error']['status_code']);
             }
@@ -125,6 +247,58 @@ class ShippingCompanyController extends Controller
     {
         try {
             $data = $this->ShippingCompanyService->update($request->all(), (int)$id);
+            if (isset($data['error'])){
+                return $this->ApiResponse($data['error']['message'],$data['error']['status_code']);
+            }
+            return $this->ApiResponse($data['message']['message'],$data['message']['status_code'],$data);
+        } catch (HttpException $e) {
+            return response()->json(['message' => $e->getMessage()], $e->getStatusCode());
+        } catch (Exception $e) {
+            if (config('app.debug')) {
+                return response()->json(['message' => $e->getMessage(), 'trace' => $e->getTrace()], 500);
+            }
+            return response()->json(['message' => __('response.catch')], 500);
+        }
+    }
+
+    public function UpdateShippingCompanyDriver(Request $request, $id)
+    {
+        try {
+            $data = $this->ShippingCompanyService->UpdateShippingCompanyDriver($request->all(), (int)$id);
+            if (isset($data['error'])){
+                return $this->ApiResponse($data['error']['message'],$data['error']['status_code']);
+            }
+            return $this->ApiResponse($data['message']['message'],$data['message']['status_code'],$data);
+        } catch (HttpException $e) {
+            return response()->json(['message' => $e->getMessage()], $e->getStatusCode());
+        } catch (Exception $e) {
+            if (config('app.debug')) {
+                return response()->json(['message' => $e->getMessage(), 'trace' => $e->getTrace()], 500);
+            }
+            return response()->json(['message' => __('response.catch')], 500);
+        }
+    }
+    public function AssignDriverToRoute(Request $request, $id)
+    {
+        try {
+            $data = $this->ShippingCompanyService->AssignDriverToRoute($request->all(), (int)$id);
+            if (isset($data['error'])){
+                return $this->ApiResponse($data['error']['message'],$data['error']['status_code']);
+            }
+            return $this->ApiResponse($data['message']['message'],$data['message']['status_code'],$data);
+        } catch (HttpException $e) {
+            return response()->json(['message' => $e->getMessage()], $e->getStatusCode());
+        } catch (Exception $e) {
+            if (config('app.debug')) {
+                return response()->json(['message' => $e->getMessage(), 'trace' => $e->getTrace()], 500);
+            }
+            return response()->json(['message' => __('response.catch')], 500);
+        }
+    }
+    public function DriverUpdateRouteStatus(Request $request, $id)
+    {
+        try {
+            $data = $this->ShippingCompanyService->DriverUpdateRouteStatus($request->all(), (int)$id);
             if (isset($data['error'])){
                 return $this->ApiResponse($data['error']['message'],$data['error']['status_code']);
             }

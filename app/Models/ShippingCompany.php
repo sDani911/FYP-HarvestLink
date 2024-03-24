@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ShippingCompany extends Model
 {
@@ -27,6 +28,14 @@ class ShippingCompany extends Model
 'government_clearance',
 'license_number'
     ];
+    public function drivers()
+    {
+        return $this->hasMany(Driver::class);
+    }
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
 
 }

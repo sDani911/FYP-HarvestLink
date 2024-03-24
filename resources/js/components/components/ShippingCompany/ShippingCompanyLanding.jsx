@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import ReactApexChart from 'react-apexcharts';
 import DataTable from 'react-data-table-component';
+import axios from "../../axiosConfig";
+import {Link} from "react-router-dom";
+import generate from "../../assets/icons/create.png";
+import add from "../../assets/icons/add.png";
 
 function ShippingCompany_Landing() {
 
-
-    {/* //////////////////////////////BACKEND ONLY////////////////////////////// */ }
-
-    //Data regarding the status from database is to be stored in here to be shown in the graph {
     const [barChartOptions, setBarChartOptions] = useState({
         chart: {
             id: "basic-bar"
@@ -44,60 +44,63 @@ function ShippingCompany_Landing() {
             data: [35, 45, 40, 54, 39, 30, 72, 11]
         }
     ]);
-    const data = [
-        { id: 1, manufactureId: 'TX123', dateCreated: '2023-01-01', criteria: 'Some Criteria', status: 'Completed' },
-        { id: 2, manufactureId: 'TX456', dateCreated: '2023-01-02', criteria: 'Another Criteria', status: 'Pending' },
-        { id: 3, manufactureId: 'TX789', dateCreated: '2023-01-03', criteria: 'Another Criteria', status: 'Failed' },
-        { id: 4, manufactureId: 'TX987', dateCreated: "2023-01-04", criteria: "Different Criteria", status: "Completed" },
-        { id: 5, manufactureId: 'TX654', dateCreated: "2023-01-05", criteria: "Some Criteria", status: "Pending" },
-        { id: 6, manufactureId: 'TX321', dateCreated: "2023-01-06", criteria: "Another Criteria", status: "Failed" },
-        { id: 7, manufactureId: 'TX555', dateCreated: "2023-01-07", criteria: "Different Criteria", status: "Completed" },
-        { id: 8, manufactureId: 'TX111', dateCreated: "2023-01-08", criteria: "Some Criteria", "status": "Pending" },
-        { id: 9, manufactureId: 'TX888', dateCreated: "2023-01-09", criteria: "Another Criteria", status: "Failed" },
-        { id: 10, manufactureId: 'TX222', dateCreated: "2023-01-10", criteria: "Different Criteria", status: "Completed" },
-        { id: 11, manufactureId: 'TX777', dateCreated: "2023-01-11", criteria: "Some Criteria", "status": "Pending" },
-        { id: 12, manufactureId: 'TX444', dateCreated: "2023-01-12", criteria: "Another Criteria", status: "Failed" },
-        { id: 13, manufactureId: 'TX999', dateCreated: "2023-01-13", criteria: "Different Criteria", status: "Completed" }
+    const [inspectionData, setInspectionData] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(10); // Set the desired number of items per page
 
-        // Add more data as needed
-    ];
-    // }
+    const [isHovered, setIsHovered] = useState(false);
 
-    {/* //////////////////////////////FRONTEND ONLY////////////////////////////// */ }
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`/ShippingCompanyDriverData?page=${currentPage}&view=${itemsPerPage}`);
+                const { data, last_page } = await response.data.data;
+                setInspectionData(data);
+                setTotalPages(last_page);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchData();
+    }, [currentPage, itemsPerPage]);
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
     const columns = [
         {
-            name: 'Sr.',
-            selector: 'id',
-
-            width: '75px',
+            name: 'Name',
+            selector: (row) => row.user.first_name,
         },
         {
-            name: 'Manufacture ID',
-            selector: 'manufactureId',
-
-            width: '250px',
+            name: 'Car',
+            selector: (row) => row.vehicle.type,
         },
         {
-            name: 'Date Created',
-            selector: 'dateCreated',
-
-            width: '250px',
-
+            name: 'Availability',
+            selector: (row) => row.availability_status,
         },
         {
-            name: 'Criteria',
-            selector: 'criteria',
-
-            width: '250px',
+            name: 'License',
+            selector: (row) => row.license_number,
         },
         {
-            name: 'Status',
-            selector: 'status',
-
-            width: '100px',
+            name: 'Actions',
+            selector: (row) => row.id,
+            // width: '250px',
+            cell: (row) => (
+                <div className="flex flex-row items-center justify-center">
+                    <Link to={`/UpdateDriver/${row.id}`}>
+                        <button >
+                            <img src={generate} alt="generate" className="w-6 h-6 mx-[9.75px]" />
+                        </button>
+                    </Link>
+                </div>
+            ),
         },
-        // Add more columns as needed
     ];
+
 
     return (
         <div className='mx-4 my-2 sm:mx-8 md:mx-16 lg:mx-24 xl:mx-32 2xl:mx-48 min-h-full'>
@@ -122,28 +125,38 @@ function ShippingCompany_Landing() {
             </div>
 
             <hr className="h-1 bg-white my-4" />
-
+            <div className="flex flex-row items-center justify-between">
+                <b><h1 className="my-6 sm:text-2xl md:text-4xl ">Drivers</h1></b>
+                <Link to='/CreateDriver'>
+                    <button
+                        className={`flex items-center justify-between  px-2.5 py-1 rounded-3xl bg-[#4663CC] text-white text-l ${isHovered ? 'overflow-visible btn-expand-animate width' : 'overflow-hidden width btn-expand-animate'}`}
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={() => setIsHovered(false)}
+                    >
+                        <img className="w-4 h-4 m-2 sm:w-5 sm:h-5 md:w-7 md:h-7" src={add} alt="Add Driver" />
+                        {isHovered && <span className="p-1">Add Driver</span>}
+                    </button>
+                </Link>
+            </div>
             {/* Tabular representation of all transaction for user */}
             <div className="my-4 sm:my-0 border-2 border-white z-[-20]">
                 <DataTable
-                    title="Manufacture Data Table"
+                    title="Drivers"
                     columns={columns}
-                    data={data}
+                    data={inspectionData}
                     className="rdt_Table"
-                    selectableRows
                     fixedHeader
                     pagination
-                    selectableRowsHighlight={true}
                     pointerOnHover={true}
                     highlightOnHover={true}
+                    paginationPerPage={itemsPerPage}
+                    paginationRowsPerPageOptions={[10]} // Set your desired rows per page options
+                    paginationTotalRows={totalPages * itemsPerPage}
+                    paginationServer
+                    onChangePage={handlePageChange}
                 />
             </div>
-
         </div>
-
     );
-
-
 }
-
 export default ShippingCompany_Landing;
