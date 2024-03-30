@@ -226,7 +226,7 @@ class ShippingCompanyController extends Controller
     public function edit($id)
     {
         try {
-            $data = $this->ShippingCompanyService->getEditData((int)$id);
+            $data = $this->ShippingCompanyService->show((int)$id);
             if (isset($data['error'])){
                 return $this->ApiResponse($data['error']['message'],$data['error']['status_code']);
             }

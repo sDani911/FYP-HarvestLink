@@ -34,6 +34,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     //Admin
     Route::post('createUser',[AuthController::class,'register']);
+    Route::post('updateUser/{id}',[AuthController::class,'updateUser']);
+    Route::get('UserListing',[AuthController::class,'UserListing']);
+    Route::post('deleteUser/{id}',[AuthController::class,'deleteUser']);
 
     //Farmer
     Route::post('createFarm',[FarmRecordController::class,'store']);

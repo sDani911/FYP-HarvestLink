@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Progress } from "../Comp/Progress";
 import axios from "../../axiosConfig";
 
-const nextForm = () => {};
-const prevForm = () => {};
 export default function AdminCreate() {
 
     const [personalInfo, setPersonalInfo] = useState({

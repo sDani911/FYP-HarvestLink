@@ -31,7 +31,7 @@ export default function Appointment() {
 
     const handleView = (row) => {
         if (selectedRows.length > 0) {
-            navigate('/ViewRole', { state: row });
+            navigate('/ViewUser', { state: row });
         }
         else {
             alert('No Role selected.\nPlease select invoice to view');

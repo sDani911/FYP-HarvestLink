@@ -57,10 +57,19 @@ class DriverService
             return ['error' => config('constants.internal_error')];
         }
     }
-    public function DriverJobs($view = null, $page = null,$search = null, $filter = null,$driverId)
+    public function DriverJobs($view = null, $page = null,$search = null, $filter = null,$driver,$roleId)
     {
         try {
-            $jobs = Order::where('driver_id',$driverId);
+            if ($roleId === 1 || $roleId === 3){
+                $jobs = Order::Query();
+            }else{
+                if (!$driver) {
+                    return [
+                        'error' => config('constants.not_found')($this->moduleName),
+                    ];
+                }
+                $jobs = Order::where('driver_id',$driver->id);
+            }
 
             if($search){
                 $jobs = $jobs->where('user_id', 'like', '%' .$search. '%' )

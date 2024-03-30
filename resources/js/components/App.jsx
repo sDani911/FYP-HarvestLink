@@ -33,8 +33,8 @@ import ShippingCompany_Landing from './components/ShippingCompany/ShippingCompan
 import CertificateLanding from './components/Certification/CertificationLanding';
 import CertificateDetail from './components/Certification/CertificateDetail';
 import AdminLanding from './components/Admin/AdminLanding';
-import EditRole from './components/Admin/EditRole';
-import ViewRole from './components/Admin/ViewRole';
+import EditUser from './components/Admin/EditUser';
+import ViewUser from './components/Admin/ViewUser';
 // import DeleteRole from './components/Admin/DeleteRole';
 import AddRole from './components/Admin/AddRole';
 // import AddFormComponent from './components/Admin/AddRole';
@@ -99,8 +99,8 @@ function MyApp() {
                         <Route exact path="/CertificateLanding" element={<CertificateLanding/>} />
                         <Route exact path="/CertificateDetail" element={<CertificateDetail/>} />
                         <Route exact path="/AdminLanding" element={<AdminLanding/>} />
-                        <Route exact path="/EditRole" element={<EditRole/>} />
-                        <Route exact path="/ViewRole" element={<ViewRole/>} />
+                        <Route exact path="/EditUser" element={<EditUser/>} />
+                        <Route exact path="/ViewUser" element={<ViewUser/>} />
                         <Route exact path="/AddRole" element={<AddRole/>} />
                         <Route exact path="/Appointment" element={<Appointment/>} />
                         <Route exact path="/AddCropToMarketPlace/:id" element={<AddCropToMarketPlace/>} />

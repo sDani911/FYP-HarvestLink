@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Driver\DriverCreateFormRequest;
 use App\Http\Requests\Driver\DriverUpdateFormRequest;
 use App\Models\Driver;
+use App\Models\User;
 use App\Services\Driver\DriverService;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -56,7 +57,7 @@ class DriverController extends Controller
             $page = (int)request()->page ?? 1;
             $search = request()->search ? request()->search : null;
             $groupBy = request()->groupBy ? request()->groupBy : null;
-            $data = $this->DriverService->DriverJobs($view,$page,$search,$groupBy,$driver->id);
+            $data = $this->DriverService->DriverJobs($view,$page,$search,$groupBy,$driver,$user->role_id);
             if (isset($data['error'])){
                 return $this->ApiResponse($data['error']['message'],$data['error']['status_code']);
             }

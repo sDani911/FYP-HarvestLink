@@ -56,6 +56,48 @@ class AuthService
         }
     }
 
+    public function updateUser($data, $id)
+    {
+        try{
+            $role = Role::where('title',$data['roleInfo']['selectedRole'])->first();
+            $address = [
+                'street'=>$data['addressInfo']['street'],
+                'city'=>$data['addressInfo']['city'],
+                'country'=>$data['addressInfo']['country'],
+                'state'=>$data['addressInfo']['state'],
+            ];
+        $user = [
+            'cnic'      => $data['personalInfo']['cnic'],
+            'first_name'     => $data['personalInfo']['firstName'],
+            'last_name'   => $data['personalInfo']['lastName'],
+            'dob'  => $data['personalInfo']['dateOfBirth'],
+            'cnic_expiry'  => $data['personalInfo']['cnicExpiry'],
+            'gender'  => $data['personalInfo']['gender'],
+//            'address_id'  => $address->id,
+            'role_id'  => $role->id,
+            'phone_number'  => $data['contactInfo']['phoneNumber'],
+            'email'  => $data['contactInfo']['email'],
+            'password'  => bcrypt($data['contactInfo']['password']),
+            'status'  => 'active',
+            'profile_picture'  => $data['personalInfo']['profilePicture'],
+            'qualification'  => $data['personalInfo']['qualification'],
+        ];
+        $userData = User::find($id);
+        $addressData = Address::find($userData->address_id);
+        $user = $userData->update($user);
+        $address = $addressData->update($address);
+
+        return ['data' => 'success'];
+        } catch (QueryException $e) {
+            // Handle the database query exception here, log it or return an error response
+            return ['error' => config('constants.query_error')($this->moduleName,$e->getMessage())];
+        } catch (\Exception $e) {
+            // Handle other exceptions
+            dd($e->getMessage().' '.$e->getLine());
+            return ['error' => config('constants.internal_error')];
+        }
+    }
+
     public function logout()
     {
         Auth::user()->tokens()->delete();
