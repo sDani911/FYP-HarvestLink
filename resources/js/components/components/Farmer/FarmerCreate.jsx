@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { Progress2 } from "../Comp/Progress";
 import axios from "../../axiosConfig";
-
 const nextForm = () => {};
 const prevForm = () => {};
-
 export default function FarmerCreate() {
 
     const [cropInfo, setCropInfo] = useState({
@@ -16,7 +14,6 @@ export default function FarmerCreate() {
         endDate: "",
         seedPrice: "",
     });
-
     const [farmInfo, setFarmInfo] = useState({
         name: "",
         size: "",
@@ -27,7 +24,6 @@ export default function FarmerCreate() {
         state: "",
         country: "",
     });
-
     const [fertilizerInfo, setFertilizerInfo] = useState({
         fertilizerName: "",
         fertilizerPrice: "",
@@ -36,29 +32,22 @@ export default function FarmerCreate() {
         pesticideName: "",
         pesticidePrice: "",
     });
-
     const [currentStep, setCurrentStep] = useState(1);
-
     const nextForm = () => {
         setCurrentStep((prevStep) => prevStep + 1);
     };
-
     const prevForm = () => {
         setCurrentStep((prevStep) => prevStep - 1);
     };
-
     const updateCropInfo = (data) => {
         setCropInfo((prevData) => ({ ...prevData, ...data }));
     };
-
     const updateFarmInfo = (data) => {
         setFarmInfo((prevData) => ({ ...prevData, ...data }));
     };
-
     const updateFertilizerInfo = (data) => {
         setFertilizerInfo((prevData) => ({ ...prevData, ...data }));
     };
-
     const submitForm = async () => {
         try {
             const formData = {
@@ -399,77 +388,3 @@ function FertilizerInformation({  prevForm, fertilizerInfo, updateFertilizerInfo
         </div>
     );
 }
-
-// // Separate function for Inspection Report section
-// function InspectionReport({ nextForm, prevForm }) {
-//     const submitForm = () => {};
-//     return (
-//         <div className="my-12 mx-10 bg-blue-800 rounded-3xl shadow-2xl p-4">
-//             <div className="flex items-end justify-between h-[60px]">
-//                 <button
-//                     className="bg-blue-600 text-white text-xl px-4 py-2 rounded-lg"
-//                     onClick={prevForm}
-//                 >
-//                     Back
-//                 </button>
-//                 <h2 className="text-3xl font-bold  px-6 py-3  rounded-md">
-//                     Farmer Crop
-//                 </h2>
-//                 <button
-//                     className="bg-blue-600 text-white text-xl px-4 py-2 rounded-lg"
-//                     onClick={submitForm}
-//                 >
-//                     Finish
-//                 </button>
-//             </div>
-//             <hr className="my-4 h-1 bg-white" />
-//             <Progress level={4} />
-//             <form method="post" className="grid grid-cols-1 gap-4 mt-4">
-//                 <div className="p-4 grid grid-cols-1 gap-4">
-//                     <h2 className="mx-4 mt-4 text-3xl font-bold text-black">
-//                         Inspection Report
-//                     </h2>
-//                     <label className="text-white">Inspection Id</label>
-//                     <input
-//                         className="w-full h-10 px-4 rounded-xl border-2 border-white"
-//                         type="text"
-//                         name="InspectionId"
-//                         placeholder="Inspection Id"
-//                     />
-//
-//                     <label className="text-white">Inspection Start Date</label>
-//                     <input
-//                         className="w-full h-10 px-4 rounded-xl border-2 border-white"
-//                         type="date"
-//                         name="InspectionStart"
-//                         placeholder="Inspection Start Date"
-//                     />
-//
-//                     <label className="text-white">Inspection End Date</label>
-//                     <input
-//                         className="w-full h-10 px-4 rounded-xl border-2 border-white"
-//                         type="date"
-//                         name="InspectionEnd"
-//                         placeholder="Inspection End Date"
-//                     />
-//
-//                     <label className="text-white">Inspector Name</label>
-//                     <input
-//                         className="w-full h-10 px-4 rounded-xl border-2 border-white"
-//                         type="text"
-//                         name="InspectorName"
-//                         placeholder="Inspector Name"
-//                     />
-//
-//                     <label className="text-white">Department</label>
-//                     <input
-//                         className="w-full h-10 px-4 rounded-xl border-2 border-white"
-//                         type="text"
-//                         name="Department"
-//                         placeholder="Department"
-//                     />
-//                 </div>
-//             </form>
-//         </div>
-//     );
-// }

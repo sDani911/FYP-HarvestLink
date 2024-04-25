@@ -32,7 +32,6 @@ function Nav_Bar() {
 
 
   //handle signout for the user
-    const navigate = useNavigate();
 
     const handleSignOut = () => {
         setUserbarOpen(false);
