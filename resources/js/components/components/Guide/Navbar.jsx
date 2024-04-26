@@ -1,4 +1,5 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
+import Web3 from 'web3';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/images/HarvestLink_Logo.png';
 import user from '../../assets/icons/user.png';
@@ -29,6 +30,33 @@ function Nav_Bar() {
     const { toggleUserLogin } = useContext(AuthContext);
     const role = Type;
 
+    const [web3, setWeb3] = useState(null);
+
+    useEffect(() => {
+        const initWeb3 = async () => {
+            if (window.ethereum) {
+                const web3Instance = new Web3(window.ethereum);
+                try {
+                    // Request account access if needed
+                    await window.ethereum.enable();
+                    setWeb3(web3Instance);
+                } catch (error) {
+                    // User denied account access...
+                    console.error("User denied account access");
+                }
+            }
+            // Legacy dapp browsers...
+            else if (window.web3) {
+                // Use Mist/MetaMask's provider.
+                setWeb3(new Web3(window.web3.currentProvider));
+            }
+            // Non-dapp browsers...
+            else {
+                console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+            }
+        };
+        initWeb3();
+    }, []);
 
 
   //handle signout for the user
@@ -164,6 +192,12 @@ function Nav_Bar() {
               <aside className={`bg-gray-800 text-white w-72 absolute h-screen  px-10 border-2 top-[66px] right-[-2px] userBar_open`}>
                 <ul className="space-y-4 mt-6">
                   <li>
+                    <Link to='/profile' className="flex items-center py-2 px-4 hover:bg-gray-700">
+                      <span><img src={profile} alt="profile" className="w-6 h-6 bg-slate-300 rounded-full" /></span>
+                      <span className="ml-6">Profile</span>
+                    </Link>
+                  </li>
+                    <li>
                     <Link to='/profile' className="flex items-center py-2 px-4 hover:bg-gray-700">
                       <span><img src={profile} alt="profile" className="w-6 h-6 bg-slate-300 rounded-full" /></span>
                       <span className="ml-6">Profile</span>

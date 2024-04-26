@@ -19,7 +19,6 @@ function Homepage() {
 
     const { Type } = useContext(AuthContext);
     const user = Type; //To be handled by backend developer; Tip fetch user type from backend
-
     const homepageItems = [
         { text: 'Administeration', link: '/AdminLanding', icon: adminIcon, access: ['Admin',] },
         { text: 'Driver', link: '/DriverLanding', icon: driverIcon, access: ['Driver', 'Admin',] },
