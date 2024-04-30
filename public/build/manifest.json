@@ -1,6 +1,10 @@
 {
   "resources/css/app.css": {
+<<<<<<< HEAD
     "file": "assets/app-179954eb.css",
+=======
+    "file": "assets/app-4ed993c7.js",
+>>>>>>> 5a8f618161e399c0ae5055468b878d4a350e9c5d
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -42,7 +46,11 @@
     "css": [
       "assets/app-86043aba.css"
     ],
+<<<<<<< HEAD
     "file": "assets/app-18464e63.js",
+=======
+    "file": "assets/app-6a9e3056.js",
+>>>>>>> 5a8f618161e399c0ae5055468b878d4a350e9c5d
     "isEntry": true,
     "src": "resources/js/app.js"
   },

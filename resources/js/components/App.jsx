@@ -48,8 +48,12 @@ import Stats from './components/Statistics/Statistics';
 import UserBlockChain from './components/BlockChain/BlockChain';
 import Appointment from './components/Admin/Appointements';
 import './assets/styles/index.css'
+<<<<<<< HEAD
 import { ToastContainer } from "react-toastify";
 import NotFound from './Error.jsx';
+=======
+import {ToastContainer} from "react-toastify";
+>>>>>>> 5a8f618161e399c0ae5055468b878d4a350e9c5d
 
 function MyApp() {
     const { userLogin } = useContext(AuthContext);
@@ -57,6 +61,7 @@ function MyApp() {
     return (
         <BrowserRouter>
             <div className='app-body'>
+<<<<<<< HEAD
                 <header>
                     <Nav_Bar />
                 </header>
@@ -120,6 +125,67 @@ function MyApp() {
                 <footer>
                     <Footer />
                 </footer>
+=======
+                    <header>
+                        <Nav_Bar />
+                    </header>
+                    <Routes>
+                        {!userLogin ? (
+                            <>
+                                <Route exact path="/" element={<LandingPage />} />
+                                <Route path="/HarvestLink" element={<LandingPage />} />
+                            </>
+                        ) : (
+                            <>
+                                <Route path="/" element={<Homepage />} />
+                                <Route path="/HarvestLink" element={<Homepage />} />
+                            </>
+                        )}
+                        <Route exact path="/Login" element={<Login />} />
+                        <Route exact path="/Signup" element={<Signup />} />
+                        <Route exact path="/About" element={<></>} />
+                        <Route exact path="/Contact" element={<></>} />
+                        <Route exact path="/FarmerLanding" element={<Farmer_Landing />} />
+                        <Route exact path="/Create" element={<Create/>} />
+                        <Route exact path="/FarmerCreate" element={<FarmerCreate/>} />
+                        <Route exact path="/ManufactureCreate" element={<ManufactureCreate/>} />
+                        <Route exact path="/ShippingCompanyCreate" element={<ShippingCompanyCreate/>} />
+                        <Route exact path="/DriverCreate" element={<DriverCreate/>} />
+                        <Route exact path="/AdminCreate" element={<AdminCreate/>} />
+                        <Route exact path="/Trade" element={<Trade/>} />
+                        <Route exact path="/Invoice" element={<Invoice/>} />
+                        <Route exact path="/InvoiceNew" element={<InvoiceNew/>} />
+                        <Route exact path="/InvoiceView" element={<InvoiceView/>} />
+                        <Route exact path="/InspectionLanding" element={<InspectionLanding/>} />
+                        <Route exact path="/InspectionRequest" element={<InspectionRequest/>} />
+                        <Route exact path="/DriverLanding" element={<DriverLanding/>} />
+                        <Route exact path="/DriverView" element={<DriverView/>} />
+                        <Route exact path="/DriverViewRoute/:id" element={<DriverViewRoute/>} />
+                        <Route exact path="/RouteLanding" element={<RouteLanding/>} />
+                        <Route exact path="/RouteView/:id" element={<RouteView/>} />
+                        <Route exact path="/CreateDriver" element={<CreateDriver/>} />
+                        <Route exact path="/ManufactureLanding" element={<Manufacture_Landing/>} />
+                        <Route exact path="/ShippingCompanyLanding" element={<ShippingCompany_Landing/>} />
+                        <Route exact path="/CertificateLanding" element={<CertificateLanding/>} />
+                        <Route exact path="/CertificateDetail" element={<CertificateDetail/>} />
+                        <Route exact path="/AdminLanding" element={<AdminLanding/>} />
+                        <Route exact path="/EditUser" element={<EditUser/>} />
+                        <Route exact path="/ViewUser" element={<ViewUser/>} />
+                        <Route exact path="/AddRole" element={<AddRole/>} />
+                        <Route exact path="/Appointment" element={<Appointment/>} />
+                        <Route exact path="/AddCropToMarketPlace/:id" element={<AddCropToMarketPlace/>} />
+                        <Route exact path="/UpdateDriver/:id" element={<UpdateDriver/>} />
+                        <Route exact path="/MarketPlace" element={<MarketPlace/>} />
+                        <Route exact path="/ProductPage" element={<ProductPage/>} />
+                        <Route exact path="/OrderPage" element={<OrderPage/>} />
+                        <Route exact path="/Tax" element={<Tax/>} />
+                        <Route exact path="/Statistics" element={<Stats/>} />
+                        <Route exact path="/BlockChain" element={<UserBlockChain/>} />
+                    </Routes>
+                    <footer>
+                        <Footer />
+                    </footer>
+>>>>>>> 5a8f618161e399c0ae5055468b878d4a350e9c5d
             </div>
         </BrowserRouter>
     );

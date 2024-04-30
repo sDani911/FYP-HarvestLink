@@ -21,7 +21,11 @@
         "react-data-table-component": "^7.5.4",
         "react-dom": "^18.2.0",
         "react-dropzone": "^14.2.3",
+<<<<<<< HEAD
         "react-toastify": "^10.0.5",
         "tailwindcss": "^3.4.3"
+=======
+        "react-toastify": "^10.0.5"
+>>>>>>> 5a8f618161e399c0ae5055468b878d4a350e9c5d
     }
 }

@@ -7,7 +7,11 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
+<<<<<<< HEAD
     <div className="bg-black text-white grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-4 py-8 ">
+=======
+    <div className="bg-black text-white grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-4 py-8">
+>>>>>>> 5a8f618161e399c0ae5055468b878d4a350e9c5d
       <div className="text-center">
         <ul>
           <li className="m-4 sm:m-2 sm:text-sm sm:py-2">History</li>

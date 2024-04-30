@@ -108,7 +108,11 @@ function Farmer_Landing() {
     ];
 
     return (
+<<<<<<< HEAD
         <div className='mx-4 my-2 sm:mx-8 md:mx-16 lg:mx-24 xl:mx-32 2xl:mx-48 min-h-full h-screen'>
+=======
+        <div className='mx-4 my-2 sm:mx-8 md:mx-16 lg:mx-24 xl:mx-32 2xl:mx-48 min-h-full'>
+>>>>>>> 5a8f618161e399c0ae5055468b878d4a350e9c5d
             {/* Graphical Representation of user data */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>

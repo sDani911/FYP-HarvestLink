@@ -34,9 +34,13 @@ function Login() {
         } catch (error) {
             toast.error('Error occurred during login');
             console.error('Error occurred during login:', error);
+<<<<<<< HEAD
         } finally {
             setLoading(false);
         }
+=======
+        } 
+>>>>>>> 5a8f618161e399c0ae5055468b878d4a350e9c5d
     };
     const goToAnotherRoute = () => {
         navigate('/'); // Replace '/new-route' with the route you want to navigate to

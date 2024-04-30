@@ -112,7 +112,11 @@ export default function AdminLanding() {
     ];
 
     return (
+<<<<<<< HEAD
         <div className="mx-16 sm:mx-8 md:mx-16 mb-10 mt-6 min-h-screen h-full">
+=======
+        <div className="mx-16 sm:mx-8 md:mx-16 mb-10 mt-6">
+>>>>>>> 5a8f618161e399c0ae5055468b878d4a350e9c5d
             {
                 showDeleteConfirmation === true ?
                     <div className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">

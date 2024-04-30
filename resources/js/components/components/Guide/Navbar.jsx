@@ -90,7 +90,11 @@ function Nav_Bar() {
 
 
   return (
+<<<<<<< HEAD
     <nav className="flex items-center justify-between p-2 shadow-lg ">
+=======
+    <nav className="flex items-center justify-between p-2 border-2 shadow-lg ">
+>>>>>>> 5a8f618161e399c0ae5055468b878d4a350e9c5d
 
       {/* ////////////////////////////// LEFT SIDEBAR ////////////////////////////// */}
       <ul className="flex items-center space-x-4">
@@ -102,15 +106,24 @@ function Nav_Bar() {
           </button>
           {/* Full side bar when menu is clicked */}
           {isSidebarOpen ? (
+<<<<<<< HEAD
             <aside className={`bg-gray-800 text-white w-72 absolute top-[52px] left-[-30px] min-h-full px-4 z-10`}>
               <ul className="space-y-4 mt-2">
+=======
+            <aside className={`bg-gray-800 text-white w-72 absolute top-[52px] left-[-30px] h-screen px-4 border-2`}>
+              <ul className="space-y-4 mt-6">
+>>>>>>> 5a8f618161e399c0ae5055468b878d4a350e9c5d
                 {/* side bar filters by access and maps options accordingly */}
                 {sideBarItems
                   .filter(item => item.access.includes(role))
                   .map((item, index) => (
                     <li key={index}>
                       <Link to={item.link} className="block py-2 px-2 hover:bg-gray-700">
+<<<<<<< HEAD
                         <img src={item.icon} alt={item.text} className="w-6 h-6 inline-block mr-8 bg-slate-300 " />
+=======
+                        <img src={item.icon} alt={item.text} className="w-6 h-6 inline-block mr-8 bg-slate-300 hover:placeholder:" />
+>>>>>>> 5a8f618161e399c0ae5055468b878d4a350e9c5d
                         {item.text}
                       </Link>
                     </li>
@@ -118,13 +131,21 @@ function Nav_Bar() {
               </ul>
             </aside>
           ) : (
+<<<<<<< HEAD
             <aside className={`bg-gray-800 text-white w-16 absolute top-[52px] left-[-30px] min-h-full  pl-4`} >
+=======
+            <aside className={`bg-gray-800 text-white w-16 absolute top-[52px] left-[-30px] h-[100.28vh]  border-2 pl-4`} >
+>>>>>>> 5a8f618161e399c0ae5055468b878d4a350e9c5d
               <ul className="space-y-4 mt-6">
                 {/* Partial side bar when menu button is not clicked */}
                 {sideBarItems
                   .filter(item => item.access.includes(role))
                   .map((item, index) => (
+<<<<<<< HEAD
                     <li key={index} className="pl-2 py-[7px]">
+=======
+                    <li key={index} className="pl-2 py-2">
+>>>>>>> 5a8f618161e399c0ae5055468b878d4a350e9c5d
                       <Link to={item.link} className="block hover:bg-gray-700">
                         <img src={item.icon} alt={item.text} className="w-6 h-6 inline-block bg-slate-300" />
                       </Link>
@@ -162,7 +183,11 @@ function Nav_Bar() {
               <img src={user} alt="User Icon" />
             </button>
             {isUserbarOpen && (
+<<<<<<< HEAD
               <aside className={`bg-gray-800 text-white w-52 absolute h-screen  px-10  top-[66px] right-[-2px] userBar_open z-20`}>
+=======
+              <aside className={`bg-gray-800 text-white w-72 absolute h-screen  px-10 border-2 top-[66px] right-[-2px] userBar_open`}>
+>>>>>>> 5a8f618161e399c0ae5055468b878d4a350e9c5d
                 <ul className="space-y-4 mt-6">
                   <li>
                     <Link to='/profile' className="flex items-center py-2 px-4 hover:bg-gray-700">
