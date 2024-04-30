@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import React, { useContext } from "react";
-=======
-import React, {useContext} from "react";
->>>>>>> 5a8f618161e399c0ae5055468b878d4a350e9c5d
 import { Link } from 'react-router-dom';
 
 import adminIcon from '../assets/icons/admin.png';
@@ -17,11 +13,7 @@ import manufacturingIcon from '../assets/icons/manufacturing.png';
 import marketplaceIcon from '../assets/icons/marketplace.png';
 import routeIcon from '../assets/icons/route.png';
 import taxIcon from '../assets/icons/tax.png';
-<<<<<<< HEAD
 import { AuthContext } from "./Auth/AuthContext";
-=======
-import {AuthContext} from "./Auth/AuthContext";
->>>>>>> 5a8f618161e399c0ae5055468b878d4a350e9c5d
 
 function Homepage() {
 
@@ -35,7 +27,6 @@ function Homepage() {
         { text: 'Manufacture', link: '/ManufactureLanding', icon: manufacturingIcon, access: ['Manufacture', 'Admin',] },
         { text: 'ShippingCompany', link: '/ShippingCompanyLanding', icon: manufacturingIcon, access: ['ShippingCompany', 'Admin',] },
         { text: 'Inspection', link: '/InspectionLanding', icon: inspectorIcon, access: ['Farmer', 'Manufacture', 'Driver', 'Admin'] },
-<<<<<<< HEAD
         { text: 'Routes', link: '/RouteLanding', icon: routeIcon, access: ['Admin', 'ShippingCompany'] },
         { text: 'Marketplace', link: '/MarketPlace', icon: marketplaceIcon, access: ['Farmer', 'Manufacture', 'Admin', 'ShippingCompany'] },
         { text: 'Invoice', link: '/Invoice', icon: invoiceIcon, access: ['Farmer', 'Manufacture', 'Driver', 'Admin', 'ShippingCompany'] },
@@ -43,22 +34,12 @@ function Homepage() {
         { text: 'Certificate', link: '/CertificateLanding', icon: certificateIcon, access: ['Farmer', 'Manufacture', 'Driver', 'Admin', 'ShippingCompany'] },
         { text: 'Tax / Regulation', link: '/Tax', icon: taxIcon, access: ['Farmer', 'Manufacture', 'Driver', 'Admin', 'ShippingCompany'] },
         { text: 'Statistics', link: '/Statistics', icon: barChartIcon, access: ['Farmer', 'Manufacture', 'Driver', 'Admin', 'ShippingCompany'] },
-=======
-        { text: 'Routes', link: '/RouteLanding', icon: routeIcon, access: [ 'Admin','ShippingCompany'] },
-        { text: 'Marketplace', link: '/MarketPlace', icon: marketplaceIcon, access: ['Farmer', 'Manufacture', 'Admin','ShippingCompany'] },
-        { text: 'Invoice', link: '/Invoice', icon: invoiceIcon, access: ['Farmer', 'Manufacture', 'Driver', 'Admin','ShippingCompany'] },
-        { text: 'Blockchain Records', link: '/Blockchain', icon: blockchainIcon, access: ['Farmer', 'Manufacture', 'Driver', 'Admin','ShippingCompany'] },
-        { text: 'Certificate', link: '/CertificateLanding', icon: certificateIcon, access: ['Farmer', 'Manufacture', 'Driver', 'Admin','ShippingCompany'] },
-        { text: 'Tax / Regulation', link: '/Tax', icon: taxIcon, access: ['Farmer', 'Manufacture', 'Driver', 'Admin','ShippingCompany'] },
-        { text: 'Statistics', link: '/Statistics', icon: barChartIcon, access: ['Farmer', 'Manufacture', 'Driver', 'Admin','ShippingCompany'] },
->>>>>>> 5a8f618161e399c0ae5055468b878d4a350e9c5d
         // Add more items as needed
     ];
 
     const filteredItems = homepageItems.filter(item => item.access.includes(user));
 
     return (
-<<<<<<< HEAD
         <div className="text-white grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 min-h-screen h-full px-10 pb-11 ml-6 m-4">
             {filteredItems.map((item, index) => (
                 <Link to={item.link}>
@@ -70,19 +51,6 @@ function Homepage() {
                         </div>
                     </div>
                 </Link>
-=======
-        <div className="text-white grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 min-h-screen p-10 ml-6">
-            {filteredItems.map((item, index) => (
-                <div key={index} className="flex text-center flex-col justify-center border border-red-100 aspect-w-4 aspect-h-5 bg-blue-500 floating-box">
-                    <Link to={item.link}>
-                        <div className="h-[200] flex flex-col items-center just">
-                            <img src={item.icon} alt={item.text} className="w-6 h-6 inline-block mr-2" />
-                            <br />
-                            {item.text}
-                        </div>
-                    </Link>
-                </div>
->>>>>>> 5a8f618161e399c0ae5055468b878d4a350e9c5d
             ))}
         </div>
     );
